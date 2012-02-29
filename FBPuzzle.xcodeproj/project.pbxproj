@@ -1,0 +1,281 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		74C71E7D14FDFF4000953899 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E7C14FDFF4000953899 /* UIKit.framework */; };
+		74C71E7F14FDFF4000953899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E7E14FDFF4000953899 /* Foundation.framework */; };
+		74C71E8114FDFF4000953899 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E8014FDFF4000953899 /* CoreGraphics.framework */; };
+		74C71E8714FDFF4000953899 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74C71E8514FDFF4000953899 /* InfoPlist.strings */; };
+		74C71E8914FDFF4000953899 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C71E8814FDFF4000953899 /* main.m */; };
+		74C71E8D14FDFF4100953899 /* GAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C71E8C14FDFF4100953899 /* GAAppDelegate.m */; };
+		74C71E9014FDFF4100953899 /* GAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C71E8F14FDFF4100953899 /* GAViewController.m */; };
+		74C71E9314FDFF4100953899 /* GAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C71E9114FDFF4100953899 /* GAViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		74C71E7814FDFF4000953899 /* FBPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74C71E7C14FDFF4000953899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		74C71E7E14FDFF4000953899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		74C71E8014FDFF4000953899 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		74C71E8414FDFF4000953899 /* FBPuzzle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FBPuzzle-Info.plist"; sourceTree = "<group>"; };
+		74C71E8614FDFF4000953899 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		74C71E8814FDFF4000953899 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		74C71E8A14FDFF4000953899 /* FBPuzzle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FBPuzzle-Prefix.pch"; sourceTree = "<group>"; };
+		74C71E8B14FDFF4000953899 /* GAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAAppDelegate.h; sourceTree = "<group>"; };
+		74C71E8C14FDFF4100953899 /* GAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAAppDelegate.m; sourceTree = "<group>"; };
+		74C71E8E14FDFF4100953899 /* GAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAViewController.h; sourceTree = "<group>"; };
+		74C71E8F14FDFF4100953899 /* GAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAViewController.m; sourceTree = "<group>"; };
+		74C71E9214FDFF4100953899 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GAViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74C71E7514FDFF4000953899 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C71E7D14FDFF4000953899 /* UIKit.framework in Frameworks */,
+				74C71E7F14FDFF4000953899 /* Foundation.framework in Frameworks */,
+				74C71E8114FDFF4000953899 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		74C71E6D14FDFF4000953899 = {
+			isa = PBXGroup;
+			children = (
+				74C71E8214FDFF4000953899 /* FBPuzzle */,
+				74C71E7B14FDFF4000953899 /* Frameworks */,
+				74C71E7914FDFF4000953899 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		74C71E7914FDFF4000953899 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74C71E7814FDFF4000953899 /* FBPuzzle.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74C71E7B14FDFF4000953899 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				74C71E7C14FDFF4000953899 /* UIKit.framework */,
+				74C71E7E14FDFF4000953899 /* Foundation.framework */,
+				74C71E8014FDFF4000953899 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		74C71E8214FDFF4000953899 /* FBPuzzle */ = {
+			isa = PBXGroup;
+			children = (
+				74C71E8B14FDFF4000953899 /* GAAppDelegate.h */,
+				74C71E8C14FDFF4100953899 /* GAAppDelegate.m */,
+				74C71E8E14FDFF4100953899 /* GAViewController.h */,
+				74C71E8F14FDFF4100953899 /* GAViewController.m */,
+				74C71E9114FDFF4100953899 /* GAViewController.xib */,
+				74C71E8314FDFF4000953899 /* Supporting Files */,
+			);
+			path = FBPuzzle;
+			sourceTree = "<group>";
+		};
+		74C71E8314FDFF4000953899 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				74C71E8414FDFF4000953899 /* FBPuzzle-Info.plist */,
+				74C71E8514FDFF4000953899 /* InfoPlist.strings */,
+				74C71E8814FDFF4000953899 /* main.m */,
+				74C71E8A14FDFF4000953899 /* FBPuzzle-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		74C71E7714FDFF4000953899 /* FBPuzzle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74C71E9614FDFF4100953899 /* Build configuration list for PBXNativeTarget "FBPuzzle" */;
+			buildPhases = (
+				74C71E7414FDFF4000953899 /* Sources */,
+				74C71E7514FDFF4000953899 /* Frameworks */,
+				74C71E7614FDFF4000953899 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FBPuzzle;
+			productName = FBPuzzle;
+			productReference = 74C71E7814FDFF4000953899 /* FBPuzzle.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		74C71E6F14FDFF4000953899 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 74C71E7214FDFF4000953899 /* Build configuration list for PBXProject "FBPuzzle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 74C71E6D14FDFF4000953899;
+			productRefGroup = 74C71E7914FDFF4000953899 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				74C71E7714FDFF4000953899 /* FBPuzzle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74C71E7614FDFF4000953899 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C71E8714FDFF4000953899 /* InfoPlist.strings in Resources */,
+				74C71E9314FDFF4100953899 /* GAViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74C71E7414FDFF4000953899 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C71E8914FDFF4000953899 /* main.m in Sources */,
+				74C71E8D14FDFF4100953899 /* GAAppDelegate.m in Sources */,
+				74C71E9014FDFF4100953899 /* GAViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		74C71E8514FDFF4000953899 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74C71E8614FDFF4000953899 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		74C71E9114FDFF4100953899 /* GAViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74C71E9214FDFF4100953899 /* en */,
+			);
+			name = GAViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		74C71E9414FDFF4100953899 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		74C71E9514FDFF4100953899 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		74C71E9714FDFF4100953899 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FBPuzzle/FBPuzzle-Prefix.pch";
+				INFOPLIST_FILE = "FBPuzzle/FBPuzzle-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		74C71E9814FDFF4100953899 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FBPuzzle/FBPuzzle-Prefix.pch";
+				INFOPLIST_FILE = "FBPuzzle/FBPuzzle-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		74C71E7214FDFF4000953899 /* Build configuration list for PBXProject "FBPuzzle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C71E9414FDFF4100953899 /* Debug */,
+				74C71E9514FDFF4100953899 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74C71E9614FDFF4100953899 /* Build configuration list for PBXNativeTarget "FBPuzzle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C71E9714FDFF4100953899 /* Debug */,
+				74C71E9814FDFF4100953899 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 74C71E6F14FDFF4000953899 /* Project object */;
+}
