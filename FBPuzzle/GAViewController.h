@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBPuzzleGameView.h"
 
-@interface GAViewController : UIViewController
+@interface GAViewController : UIViewController<FBPuzzleGameViewDelegate>
+
+@property (nonatomic, retain) IBOutlet FBPuzzleGameView* puzzleGameView;
 
 @end

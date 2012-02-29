@@ -15,6 +15,9 @@
 		74C71E8D14FDFF4100953899 /* GAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C71E8C14FDFF4100953899 /* GAAppDelegate.m */; };
 		74C71E9014FDFF4100953899 /* GAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C71E8F14FDFF4100953899 /* GAViewController.m */; };
 		74C71E9314FDFF4100953899 /* GAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C71E9114FDFF4100953899 /* GAViewController.xib */; };
+		74E7B0A114FE19930085E8C1 /* FBPuzzleGameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E7B0A014FE19930085E8C1 /* FBPuzzleGameView.m */; };
+		74E7B0A414FE24D60085E8C1 /* FBPuzzleGameViewTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E7B0A314FE24D60085E8C1 /* FBPuzzleGameViewTile.m */; };
+		74E7B0AE14FE45430085E8C1 /* FBPuzzleGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E7B0AD14FE45430085E8C1 /* FBPuzzleGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,12 @@
 		74C71E8E14FDFF4100953899 /* GAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAViewController.h; sourceTree = "<group>"; };
 		74C71E8F14FDFF4100953899 /* GAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAViewController.m; sourceTree = "<group>"; };
 		74C71E9214FDFF4100953899 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GAViewController.xib; sourceTree = "<group>"; };
+		74E7B09F14FE19930085E8C1 /* FBPuzzleGameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBPuzzleGameView.h; sourceTree = "<group>"; };
+		74E7B0A014FE19930085E8C1 /* FBPuzzleGameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBPuzzleGameView.m; sourceTree = "<group>"; };
+		74E7B0A214FE24D60085E8C1 /* FBPuzzleGameViewTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBPuzzleGameViewTile.h; sourceTree = "<group>"; };
+		74E7B0A314FE24D60085E8C1 /* FBPuzzleGameViewTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBPuzzleGameViewTile.m; sourceTree = "<group>"; };
+		74E7B0AC14FE45430085E8C1 /* FBPuzzleGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBPuzzleGame.h; sourceTree = "<group>"; };
+		74E7B0AD14FE45430085E8C1 /* FBPuzzleGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBPuzzleGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +86,7 @@
 		74C71E8214FDFF4000953899 /* FBPuzzle */ = {
 			isa = PBXGroup;
 			children = (
+				74E7B09D14FE195A0085E8C1 /* Puzzlue game */,
 				74C71E8B14FDFF4000953899 /* GAAppDelegate.h */,
 				74C71E8C14FDFF4100953899 /* GAAppDelegate.m */,
 				74C71E8E14FDFF4100953899 /* GAViewController.h */,
@@ -96,6 +106,36 @@
 				74C71E8A14FDFF4000953899 /* FBPuzzle-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		74E7B09D14FE195A0085E8C1 /* Puzzlue game */ = {
+			isa = PBXGroup;
+			children = (
+				74E7B0AB14FE45290085E8C1 /* Model */,
+				74E7B0AA14FE451D0085E8C1 /* UI */,
+			);
+			name = "Puzzlue game";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		74E7B0AA14FE451D0085E8C1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				74E7B09F14FE19930085E8C1 /* FBPuzzleGameView.h */,
+				74E7B0A014FE19930085E8C1 /* FBPuzzleGameView.m */,
+				74E7B0A214FE24D60085E8C1 /* FBPuzzleGameViewTile.h */,
+				74E7B0A314FE24D60085E8C1 /* FBPuzzleGameViewTile.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		74E7B0AB14FE45290085E8C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				74E7B0AC14FE45430085E8C1 /* FBPuzzleGame.h */,
+				74E7B0AD14FE45430085E8C1 /* FBPuzzleGame.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +203,9 @@
 				74C71E8914FDFF4000953899 /* main.m in Sources */,
 				74C71E8D14FDFF4100953899 /* GAAppDelegate.m in Sources */,
 				74C71E9014FDFF4100953899 /* GAViewController.m in Sources */,
+				74E7B0A114FE19930085E8C1 /* FBPuzzleGameView.m in Sources */,
+				74E7B0A414FE24D60085E8C1 /* FBPuzzleGameViewTile.m in Sources */,
+				74E7B0AE14FE45430085E8C1 /* FBPuzzleGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +317,7 @@
 				74C71E9814FDFF4100953899 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
