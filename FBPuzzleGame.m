@@ -12,7 +12,7 @@
 @implementation NSIndexPath(FBPuzzleGame) 
 +(id) indexPathForColumn:(NSUInteger) column forRow:(NSUInteger)row
 {
-    NSUInteger indexes[2] = {row, column};
+    NSUInteger indexes[2] = {column, row};
     return [NSIndexPath indexPathWithIndexes:indexes length:2];
 }
 
@@ -32,7 +32,7 @@
 
 @implementation FBPuzzleGame
 @synthesize skippedTileIndexPath = _skippedIndexPath;
-
+@synthesize dimension = _dimension;
 -(id)init
 {
     self = [super init];
@@ -118,8 +118,7 @@
             [tempStack removeLastObject];
             index -= step*_dimension;
         }
-        [tempStack release];
-        
+        [tempStack release];        
     }
     else if(_skippedIndexPath.row == indexPath.row)
     {
@@ -145,6 +144,9 @@
         [tempStack release];
 
     }
+    [_skippedIndexPath release];
+    _skippedIndexPath = [indexPath retain];
+
 }
 
 

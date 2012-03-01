@@ -8,6 +8,7 @@
 
 #import "GAViewController.h"
 #import "FBPuzzleGameViewTile.h"
+#import "GAAppDelegate.h"
 
 @implementation GAViewController
 @synthesize puzzleGameView;
@@ -84,13 +85,35 @@
 
 -(NSUInteger)gameDimensionForGameView:(FBPuzzleGameView *)gameVIew
 {
-    return 4;
+    return [(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame].dimension;
 }
 
 -(FBPuzzleGameViewTile *)gameView:(FBPuzzleGameView *)gameVIew 
                  tileForIndexPath:(NSIndexPath *)indexPath
 {
+    if([indexPath isEqual:
+        [(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame].skippedTileIndexPath])
+        return nil;
+    
     FBPuzzleGameViewTile* tile = [[FBPuzzleGameViewTile alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     return [tile autorelease];
 }
+
+-(BOOL)gameView:(FBPuzzleGameView *)gameView 
+canMoveTileAtIndexPath:(NSIndexPath *)indexPath 
+    inDirection:(EFBPuzzleGameMoveDirection)direction
+{
+    FBPuzzleGame* game = [(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame];
+    return [game canMoveTileAtIndexPath:indexPath inDirection:direction];
+}
+
+-(void)gameView:(FBPuzzleGameView *)gameView 
+didMoveTileAtIndexPath:(NSIndexPath *)indexPath
+    inDirection:(EFBPuzzleGameMoveDirection)direction
+{
+    FBPuzzleGame* game = [(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame];
+    [game moveTileAtIndexPath:indexPath inDirection:direction];
+}
+
+
 @end

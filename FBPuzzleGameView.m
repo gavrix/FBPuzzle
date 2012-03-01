@@ -201,13 +201,17 @@ static char shadowKey;
     return NO;
 }
 
--(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+/*-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     if([_tiles containsObject:gestureRecognizer.view] )
-        return YES;
-    return NO;
+    {
+        FBPuzzleGameViewTile* tile = (FBPuzzleGameViewTile*)gestureRecognizer.view;
+        EFBPuzzleGameMoveDirection direction = 
+        [gestureRecognizer translationInView:self].x>0?EFBPuzzleGameMoveDirectionRight:EFBPuzzleGameMoveDirectionLeft;
+        
+    }
 }
-
+*/
 -(void) handleVerticalGesture:(UIPanGestureRecognizer*) gc
 {
     UIView* tile = gc.view;
@@ -222,13 +226,92 @@ static char shadowKey;
 
 -(void) handleHorizontalGesture:(UIPanGestureRecognizer*) gc
 {
-    UIView* tile = gc.view;
-    if([_tiles containsObject:tile])
+    if(![self.delegate respondsToSelector:@selector(gameView:canMoveTileAtIndexPath:inDirection:)])
+        return;
+
+    
+    if([_tiles containsObject:gc.view])
     {
-        tile.frame = CGRectMake(tile.frame.origin.x + [gc translationInView:tile].x, 
-                                tile.frame.origin.y, 
-                                tile.frame.size.width, tile.frame.size.height);
-        [gc setTranslation:CGPointZero inView:tile];
+        __block FBPuzzleGameViewTile* tile = (FBPuzzleGameViewTile*)gc.view;
+        EFBPuzzleGameMoveDirection direction = 
+            [gc translationInView:self].x>0?EFBPuzzleGameMoveDirectionRight:EFBPuzzleGameMoveDirectionLeft;
+        NSInteger step = [gc translationInView:self].x>0?1:-1;
+        
+        if([self.delegate gameView:self canMoveTileAtIndexPath:tile.currentPosition inDirection:direction])
+        {
+            CGSize tileSize = CGSizeMake(self.bounds.size.width/(CGFloat)_dimension, 
+                                         self.bounds.size.height/(CGFloat)_dimension);
+
+            if(gc.state == UIGestureRecognizerStateChanged)
+            {
+                while (![tile isEqual:[NSNull null]])
+                {
+                    CGRect originalFrame = CGRectMake(tile.currentPosition.column * tileSize.width, 
+                                                      tile.currentPosition.row * tileSize.height, 
+                                                      tileSize.width,tileSize.height);
+                    
+                    tile.frame = CGRectMake(originalFrame.origin.x + [gc translationInView:tile].x, 
+                                            originalFrame.origin.y, 
+                                            originalFrame.size.width, originalFrame.size.height);
+                    tile = [_tiles objectAtIndex:tile.currentPosition.row*_dimension + tile.currentPosition.column+step];
+                    
+                }
+            }
+            else if(gc.state == UIGestureRecognizerStateEnded || gc.state == UIGestureRecognizerStateChanged)
+            {
+                CGFloat translation = [gc translationInView:tile].x;
+                if(ABS(translation)> tileSize.width/2)
+                {
+                    NSIndexPath* prevPosition = [tile.currentPosition retain];
+                    tile.currentPosition = [NSIndexPath indexPathForColumn:tile.currentPosition.column + step
+                                                                    forRow:tile.currentPosition.row];
+                    [UIView animateWithDuration:.16f 
+                                     animations:^
+                     {
+                         while (![tile isEqual:[NSNull null]])
+                         {
+                         
+                             tile.frame = CGRectMake(tile.currentPosition.column * tileSize.width, 
+                                                 tile.currentPosition.row * tileSize.height, 
+                                                 tileSize.width,tileSize.height);
+                             tile = [_tiles objectAtIndex:tile.currentPosition.row*_dimension + tile.currentPosition.column+step];
+                         }
+
+                     }
+                                     completion:^(BOOL finished) 
+                     {
+                         do 
+                         {
+                             tile = [_tiles objectAtIndex:tile.currentPosition.row*_dimension + tile.currentPosition.column+step];
+                             [self placeTile:tile toIndexPath:
+                              [NSIndexPath indexPathForColumn:tile.currentPosition.column-step 
+                                                       forRow:tile.currentPosition.row]];
+                         } while (tile == gc.view);
+                         
+                         if([self.delegate respondsToSelector:@selector(gameView:didMoveTileAtIndexPath:inDirection:)])
+                             [self.delegate gameView:self didMoveTileAtIndexPath:prevPosition inDirection:direction];
+                         [prevPosition release];
+                     }];
+                }
+                else
+                {
+                    [UIView animateWithDuration:.16
+                                     animations:^
+                     {
+                         while (![tile isEqual:[NSNull null]])
+                         {
+
+                             tile.frame = CGRectMake(tile.currentPosition.column * tileSize.width, 
+                                                     tile.currentPosition.row * tileSize.height, 
+                                                     tileSize.width,tileSize.height);
+                             tile = [_tiles objectAtIndex:tile.currentPosition.row*_dimension + tile.currentPosition.column+step];
+                         }
+                     }];
+                }
+            }
+
+        }
+        
     }
 
 }
@@ -238,6 +321,16 @@ static char shadowKey;
 #pragma mark - Uitilities
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+-(void) placeTile:(FBPuzzleGameViewTile*)tile toIndexPath:(NSIndexPath*)indexPath
+{
+    FBPuzzleGameViewTile* anotherTile = [_tiles objectAtIndex:indexPath.row*_dimension+indexPath.column];
+    anotherTile.currentPosition = tile.currentPosition;
+    [_tiles replaceObjectAtIndex:indexPath.row*_dimension+indexPath.column withObject:tile];
+    tile.currentPosition = indexPath;
+    [_tiles replaceObjectAtIndex:anotherTile.currentPosition.row*_dimension+anotherTile.currentPosition.column 
+                      withObject:anotherTile];
+    
+}
 
 
 @end

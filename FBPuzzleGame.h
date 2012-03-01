@@ -43,5 +43,6 @@ typedef enum
 
 
 @property (nonatomic, readonly) NSIndexPath* skippedTileIndexPath;
+@property (nonatomic, readonly) NSUInteger dimension;
 
 @end

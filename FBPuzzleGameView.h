@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBPuzzleGame.h"
+
 
 @class FBPuzzleGameViewTile;
 @class FBPuzzleGameView;
-
-
 
 
 @protocol FBPuzzleGameViewDelegate <NSObject>
@@ -20,7 +20,13 @@
 -(NSUInteger) gameDimensionForGameView:(FBPuzzleGameView*)gameVIew;
 -(NSIndexPath*) tileIndexToSkipForGameView:(FBPuzzleGameView*)gameVIew;
 
--(BOOL) gameView:(FBPuzzleGameView*) gameView canMoveTileAtIndexPath:(NSIndexPath*) indexPath;
+-(BOOL) gameView:(FBPuzzleGameView*) gameView 
+canMoveTileAtIndexPath:(NSIndexPath*) indexPath 
+     inDirection:(EFBPuzzleGameMoveDirection) direction;
+
+-(void) gameView:(FBPuzzleGameView*) gameView 
+didMoveTileAtIndexPath:(NSIndexPath*) indexPath  
+     inDirection:(EFBPuzzleGameMoveDirection) direction;
 @end
 
 
@@ -32,6 +38,9 @@
     NSUInteger _dimension;
     
     UIView* _shadowsView;
+    
+    
+    
     
 }
 
