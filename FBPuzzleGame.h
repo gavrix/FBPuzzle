@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString* kGameFinishedNotification;
+
 typedef enum
 {
     EFBPuzzleGameMoveDirectionLeft,
@@ -32,6 +34,8 @@ typedef enum
     NSIndexPath* _skippedIndexPath;
     
     NSMutableSet* _wrongTiles;
+    
+    BOOL _initializing;
 }
 
 -(void) initializeGameWithDimension:(NSUInteger) dimension 

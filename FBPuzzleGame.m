@@ -8,6 +8,8 @@
 
 #import "FBPuzzleGame.h"
 
+NSString* kGameFinishedNotification = @"kGameFinishedNotification";
+
 @implementation NSIndexPath(FBPuzzleGame) 
 +(id) indexPathForColumn:(NSUInteger) column forRow:(NSUInteger)row
 {
@@ -73,8 +75,8 @@
         }
     }
     
-    
-    for(NSUInteger i=0; i< 2; ++i)
+    _initializing = YES;
+    for(NSUInteger i=0; i< 100; ++i)
     {
         NSIndexPath* newIndexPath = nil;
         EFBPuzzleGameMoveDirection direction = 0;
@@ -94,6 +96,7 @@
             continue;
         [self moveTileAtIndexPath:newIndexPath inDirection:direction];
     }
+    _initializing = NO;
     
 }
 
@@ -146,9 +149,15 @@
             if(![lastObject isEqual:[NSNull null]])
             {
                 if(lastObject.row*_dimension + indexPath.column != index)
+                {
+                    NSLog(@"new wrong tile at: %@", lastObject);
                     [_wrongTiles addObject:lastObject];
+                }
                 else
+                {
+                    NSLog(@"removing wrong tile at: %@", lastObject);
                     [_wrongTiles removeObject:lastObject];
+                }
             }
             
             [tempStack removeLastObject];
@@ -178,9 +187,15 @@
             if(![lastObject isEqual:[NSNull null]])
             {
                 if(indexPath.row*_dimension + lastObject.column != index)
+                {
+                    NSLog(@"new wrong tile at: %@", lastObject);
                     [_wrongTiles addObject:lastObject];
+                }
                 else
+                {
+                    NSLog(@"removing wrong tile at: %@", lastObject);
                     [_wrongTiles removeObject:lastObject];
+                }
             }
             [tempStack removeLastObject];
             index -= step;
@@ -192,8 +207,10 @@
     _skippedIndexPath = [indexPath retain];
     NSLog(@"Now skippedIndexPath is :%@", _skippedIndexPath);
     
-    if(![_wrongTiles count])
-        NSLog(@"GAME FINISHED!!!!");
+    if(![_wrongTiles count] && !_initializing)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kGameFinishedNotification object:nil];
+    }
 
 }
 

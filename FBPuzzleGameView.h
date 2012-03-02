@@ -18,7 +18,6 @@
 
 -(FBPuzzleGameViewTile*) gameView:(FBPuzzleGameView*)gameVIew tileForIndexPath:(NSIndexPath*) indexPath;
 -(NSUInteger) gameDimensionForGameView:(FBPuzzleGameView*)gameVIew;
--(NSIndexPath*) tileIndexToSkipForGameView:(FBPuzzleGameView*)gameVIew;
 
 -(BOOL) gameView:(FBPuzzleGameView*) gameView 
 canMoveTileAtIndexPath:(NSIndexPath*) indexPath 
@@ -48,5 +47,6 @@ didMoveTileAtIndexPath:(NSIndexPath*) indexPath
 @property (nonatomic, assign) id<FBPuzzleGameViewDelegate> delegate;
 
 -(void) loadGameView;
+-(CGRect) frameForTileAtIndexPath:(NSIndexPath*) indexPath;
 
 @end

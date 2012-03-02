@@ -90,8 +90,13 @@ static char shadowKey;
     // clear current game state
     [_tiles enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) 
     {
-        [(UIView*)obj removeFromSuperview];
-        [obj removeObserver:self forKeyPath:@"frame"];
+        if([obj isKindOfClass:[UIView class]])
+        {
+            UIView* shadowView = objc_getAssociatedObject(obj, &shadowKey);
+            [shadowView removeFromSuperview];
+            [(UIView*)obj removeFromSuperview];
+            [obj removeObserver:self forKeyPath:@"frame"];
+        }
     }];
     [_tiles removeAllObjects];
     
@@ -238,7 +243,6 @@ static char shadowKey;
                     tile.frame = CGRectMake(originalFrame.origin.x, 
                                             originalFrame.origin.y + MAX(-tileSize.height,MIN([gc translationInView:tile].y, tileSize.height)), 
                                             originalFrame.size.width, originalFrame.size.height);
-                    NSLog(@"frame now is [%.2f %.2f  %.2f %.2f]", tile.frame.origin.x, tile.frame.origin.y, tile.frame.size.width, tile.frame.size.height);
                     tile = [_tiles objectAtIndex:tile.currentPosition.row*_dimension + tile.currentPosition.column+step*_dimension];
                     
                 }

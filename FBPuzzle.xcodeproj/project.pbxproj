@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		747B846215002A330058D103 /* FBDirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B846115002A330058D103 /* FBDirectionalPanGestureRecognizer.m */; };
+		748FE86915015B5100A8345D /* globe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 748FE86815015B5100A8345D /* globe.jpg */; };
 		74C71E7D14FDFF4000953899 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E7C14FDFF4000953899 /* UIKit.framework */; };
 		74C71E7F14FDFF4000953899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E7E14FDFF4000953899 /* Foundation.framework */; };
 		74C71E8114FDFF4000953899 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E8014FDFF4000953899 /* CoreGraphics.framework */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		747B846015002A330058D103 /* FBDirectionalPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDirectionalPanGestureRecognizer.h; sourceTree = "<group>"; };
 		747B846115002A330058D103 /* FBDirectionalPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDirectionalPanGestureRecognizer.m; sourceTree = "<group>"; };
+		748FE86815015B5100A8345D /* globe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = globe.jpg; sourceTree = "<group>"; };
 		74C71E7814FDFF4000953899 /* FBPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C71E7C14FDFF4000953899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		74C71E7E14FDFF4000953899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -103,6 +105,7 @@
 		74C71E8314FDFF4000953899 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				748FE86815015B5100A8345D /* globe.jpg */,
 				74C71E8414FDFF4000953899 /* FBPuzzle-Info.plist */,
 				74C71E8514FDFF4000953899 /* InfoPlist.strings */,
 				74C71E8814FDFF4000953899 /* main.m */,
@@ -195,6 +198,7 @@
 			files = (
 				74C71E8714FDFF4000953899 /* InfoPlist.strings in Resources */,
 				74C71E9314FDFF4100953899 /* GAViewController.xib in Resources */,
+				748FE86915015B5100A8345D /* globe.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

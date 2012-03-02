@@ -10,6 +10,11 @@
 #import "FBPuzzleGameViewTile.h"
 #import "GAAppDelegate.h"
 
+@interface GAViewController()
+-(UIImage*) imageForTileAtIndexPath:(NSIndexPath*) indexPath
+                      withDimension:(NSUInteger) dimension;
+@end
+
 @implementation GAViewController
 @synthesize puzzleGameView;
 
@@ -25,6 +30,11 @@
     self.puzzleGameView.delegate = self;
     
     [self.puzzleGameView loadGameView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameFinished)
+                                                 name:kGameFinishedNotification
+                                               object:nil];
 
 }
 
@@ -32,13 +42,14 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.puzzleGameView = nil;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.puzzleGameView = nil;
     [super dealloc];
 }
@@ -79,6 +90,28 @@
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+-(void) gameFinished
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Congrats!"
+                                                    message:@"You've finished this puzzle! Start again?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    [alert show];
+    [alert release];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == [alertView firstOtherButtonIndex])
+    {
+        FBPuzzleGame* game = [(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame];
+        [game initializeGameWithDimension: game.dimension
+               withSkippedTileAtIndexPath:[NSIndexPath indexPathForColumn:0 forRow:0]];
+        [self.puzzleGameView loadGameView];
+    }
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Puzzle game view delegate methods
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +129,7 @@
         return nil;
     
     FBPuzzleGameViewTile* tile = [[FBPuzzleGameViewTile alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-    UILabel* label = [[UILabel alloc] initWithFrame:tile.bounds];
+    /*UILabel* label = [[UILabel alloc] initWithFrame:tile.bounds];
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     label.font = [UIFont boldSystemFontOfSize:56.0];
     label.textAlignment = UITextAlignmentCenter;
@@ -105,7 +138,14 @@
     label.text = [NSString stringWithFormat:@"%d", 
                   realIndexPath.row*game.dimension + realIndexPath.column];
     [tile addSubview:label];
-    [label release];
+    [label release];*/
+    
+    UIImageView* imageView = [[UIImageView alloc] initWithImage:[self imageForTileAtIndexPath:[game realIndexOfTileAtIndexPath:indexPath ] 
+                                                                                withDimension:game.dimension]];
+    imageView.frame = tile.bounds;
+    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [tile addSubview:imageView];
+    [imageView release];
     return [tile autorelease];
 }
 
@@ -125,5 +165,24 @@ didMoveTileAtIndexPath:(NSIndexPath *)indexPath
     [game moveTileAtIndexPath:indexPath inDirection:direction];
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Utilities
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(UIImage*) imageForTileAtIndexPath:(NSIndexPath*) indexPath
+                      withDimension:(NSUInteger) dimension
+{
+    UIImage* globe = [UIImage imageNamed:@"globe.jpg"];
+    
+    UIGraphicsBeginImageContext(self.puzzleGameView.frame.size);
+    [globe drawInRect:CGRectMake(0, 0, puzzleGameView.frame.size.width, puzzleGameView.frame.size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();    
+    UIGraphicsEndImageContext();
+
+    CGImageRef crop = CGImageCreateWithImageInRect(newImage.CGImage, [self.puzzleGameView frameForTileAtIndexPath:indexPath]);
+    UIImage* retVal = [UIImage imageWithCGImage:crop];
+    CGImageRelease(crop);
+    return retVal;
+}
 
 @end
