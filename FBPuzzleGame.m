@@ -149,15 +149,9 @@ NSString* kGameFinishedNotification = @"kGameFinishedNotification";
             if(![lastObject isEqual:[NSNull null]])
             {
                 if(lastObject.row*_dimension + indexPath.column != index)
-                {
-                    NSLog(@"new wrong tile at: %@", lastObject);
                     [_wrongTiles addObject:lastObject];
-                }
                 else
-                {
-                    NSLog(@"removing wrong tile at: %@", lastObject);
                     [_wrongTiles removeObject:lastObject];
-                }
             }
             
             [tempStack removeLastObject];
@@ -187,15 +181,9 @@ NSString* kGameFinishedNotification = @"kGameFinishedNotification";
             if(![lastObject isEqual:[NSNull null]])
             {
                 if(indexPath.row*_dimension + lastObject.column != index)
-                {
-                    NSLog(@"new wrong tile at: %@", lastObject);
                     [_wrongTiles addObject:lastObject];
-                }
                 else
-                {
-                    NSLog(@"removing wrong tile at: %@", lastObject);
                     [_wrongTiles removeObject:lastObject];
-                }
             }
             [tempStack removeLastObject];
             index -= step;
@@ -205,7 +193,6 @@ NSString* kGameFinishedNotification = @"kGameFinishedNotification";
     }
     [_skippedIndexPath release];
     _skippedIndexPath = [indexPath retain];
-    NSLog(@"Now skippedIndexPath is :%@", _skippedIndexPath);
     
     if(![_wrongTiles count] && !_initializing)
     {

@@ -129,16 +129,6 @@
         return nil;
     
     FBPuzzleGameViewTile* tile = [[FBPuzzleGameViewTile alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-    /*UILabel* label = [[UILabel alloc] initWithFrame:tile.bounds];
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    label.font = [UIFont boldSystemFontOfSize:56.0];
-    label.textAlignment = UITextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    NSIndexPath* realIndexPath = [game realIndexOfTileAtIndexPath:indexPath];
-    label.text = [NSString stringWithFormat:@"%d", 
-                  realIndexPath.row*game.dimension + realIndexPath.column];
-    [tile addSubview:label];
-    [label release];*/
     
     UIImageView* imageView = [[UIImageView alloc] initWithImage:[self imageForTileAtIndexPath:[game realIndexOfTileAtIndexPath:indexPath ] 
                                                                                 withDimension:game.dimension]];
