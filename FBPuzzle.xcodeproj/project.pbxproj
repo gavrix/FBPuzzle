@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		747B846215002A330058D103 /* FBDirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B846115002A330058D103 /* FBDirectionalPanGestureRecognizer.m */; };
 		74C71E7D14FDFF4000953899 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E7C14FDFF4000953899 /* UIKit.framework */; };
 		74C71E7F14FDFF4000953899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E7E14FDFF4000953899 /* Foundation.framework */; };
 		74C71E8114FDFF4000953899 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C71E8014FDFF4000953899 /* CoreGraphics.framework */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		747B846015002A330058D103 /* FBDirectionalPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDirectionalPanGestureRecognizer.h; sourceTree = "<group>"; };
+		747B846115002A330058D103 /* FBDirectionalPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDirectionalPanGestureRecognizer.m; sourceTree = "<group>"; };
 		74C71E7814FDFF4000953899 /* FBPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C71E7C14FDFF4000953899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		74C71E7E14FDFF4000953899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -125,6 +128,8 @@
 				74E7B0A014FE19930085E8C1 /* FBPuzzleGameView.m */,
 				74E7B0A214FE24D60085E8C1 /* FBPuzzleGameViewTile.h */,
 				74E7B0A314FE24D60085E8C1 /* FBPuzzleGameViewTile.m */,
+				747B846015002A330058D103 /* FBDirectionalPanGestureRecognizer.h */,
+				747B846115002A330058D103 /* FBDirectionalPanGestureRecognizer.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				74E7B0A114FE19930085E8C1 /* FBPuzzleGameView.m in Sources */,
 				74E7B0A414FE24D60085E8C1 /* FBPuzzleGameViewTile.m in Sources */,
 				74E7B0AE14FE45430085E8C1 /* FBPuzzleGame.m in Sources */,
+				747B846215002A330058D103 /* FBDirectionalPanGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
