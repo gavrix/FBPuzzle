@@ -77,7 +77,7 @@
     if(!_game)
     {
         _game = [[FBPuzzleGame alloc] init];
-        [_game initializeGameWithDimension:6 withSkippedTileAtIndexPath:[NSIndexPath indexPathForColumn:0 forRow:0]];
+        [_game initializeGameWithDimension:4 withSkippedTileAtIndexPath:[NSIndexPath indexPathForColumn:0 forRow:0]];
     }
     return _game;
 }

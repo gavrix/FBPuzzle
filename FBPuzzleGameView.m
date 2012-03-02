@@ -28,7 +28,7 @@ static char shadowKey;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) commonInit
 {
-    self.backgroundColor = [UIColor lightGrayColor];
+    self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     
     _shadowsView = [[UIView alloc] initWithFrame:self.bounds];
     _shadowsView.backgroundColor = [UIColor clearColor];
@@ -207,24 +207,7 @@ static char shadowKey;
 #pragma mark - Gesture recognizer handlers
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    if([_tiles containsObject:touch.view] )
-        return YES;
-    return NO;
-}
-*/
-/*-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    if([_tiles containsObject:gestureRecognizer.view] )
-    {
-        FBPuzzleGameViewTile* tile = (FBPuzzleGameViewTile*)gestureRecognizer.view;
-        EFBPuzzleGameMoveDirection direction = 
-        [gestureRecognizer translationInView:self].x>0?EFBPuzzleGameMoveDirectionRight:EFBPuzzleGameMoveDirectionLeft;
-        
-    }
-}
-*/
+
 -(void) handleVerticalGesture:(UIPanGestureRecognizer*) gc
 {
     if(![self.delegate respondsToSelector:@selector(gameView:canMoveTileAtIndexPath:inDirection:)])

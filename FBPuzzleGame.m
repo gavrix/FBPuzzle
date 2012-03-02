@@ -8,7 +8,6 @@
 
 #import "FBPuzzleGame.h"
 
-
 @implementation NSIndexPath(FBPuzzleGame) 
 +(id) indexPathForColumn:(NSUInteger) column forRow:(NSUInteger)row
 {
@@ -57,6 +56,11 @@
     _dimension = dimension;
     [_tiles release];
     _tiles = [[NSMutableArray alloc] initWithCapacity:dimension*dimension];
+    
+    
+    [_wrongTiles release];
+    _wrongTiles = [[NSMutableSet alloc] init];
+    
     for(NSUInteger row = 0; row < dimension; ++row)
     {
         for(NSUInteger column = 0; column < dimension; ++column)
@@ -68,6 +72,29 @@
                 [_tiles addObject:indexPath];
         }
     }
+    
+    
+    for(NSUInteger i=0; i< 2; ++i)
+    {
+        NSIndexPath* newIndexPath = nil;
+        EFBPuzzleGameMoveDirection direction = 0;
+        if(rand()%2)
+        {
+            newIndexPath = [NSIndexPath indexPathForColumn:rand()%_dimension
+                                                    forRow:_skippedIndexPath.row];
+            direction = rand()%2?EFBPuzzleGameMoveDirectionLeft:EFBPuzzleGameMoveDirectionRight;
+        }
+        else
+        {
+            newIndexPath = [NSIndexPath indexPathForColumn:_skippedIndexPath.column
+                                                    forRow:rand()%_dimension];
+            direction = rand()%2?EFBPuzzleGameMoveDirectionUp:EFBPuzzleGameMoveDirectionDown;            
+        }
+        if([newIndexPath isEqual:_skippedIndexPath])
+            continue;
+        [self moveTileAtIndexPath:newIndexPath inDirection:direction];
+    }
+    
 }
 
 -(BOOL)canMoveTileAtIndexPath:(NSIndexPath *)indexPath 
@@ -114,7 +141,16 @@
         }
         while([tempStack count])
         {
-            [_tiles replaceObjectAtIndex:index withObject:[tempStack lastObject]];
+            NSIndexPath* lastObject = [tempStack lastObject];
+            [_tiles replaceObjectAtIndex:index withObject:lastObject];
+            if(![lastObject isEqual:[NSNull null]])
+            {
+                if(lastObject.row*_dimension + indexPath.column != index)
+                    [_wrongTiles addObject:lastObject];
+                else
+                    [_wrongTiles removeObject:lastObject];
+            }
+            
             [tempStack removeLastObject];
             index -= step*_dimension;
         }
@@ -137,7 +173,15 @@
         }
         while([tempStack count])
         {
-            [_tiles replaceObjectAtIndex:index withObject:[tempStack lastObject]];
+            NSIndexPath* lastObject = [tempStack lastObject];
+            [_tiles replaceObjectAtIndex:index withObject:lastObject];
+            if(![lastObject isEqual:[NSNull null]])
+            {
+                if(indexPath.row*_dimension + lastObject.column != index)
+                    [_wrongTiles addObject:lastObject];
+                else
+                    [_wrongTiles removeObject:lastObject];
+            }
             [tempStack removeLastObject];
             index -= step;
         }
@@ -146,8 +190,15 @@
     }
     [_skippedIndexPath release];
     _skippedIndexPath = [indexPath retain];
+    NSLog(@"Now skippedIndexPath is :%@", _skippedIndexPath);
+    
+    if(![_wrongTiles count])
+        NSLog(@"GAME FINISHED!!!!");
 
 }
 
-
+-(NSIndexPath*) realIndexOfTileAtIndexPath:(NSIndexPath*)indexPath
+{
+    return [_tiles objectAtIndex:indexPath.row*_dimension + indexPath.column];
+}
 @end

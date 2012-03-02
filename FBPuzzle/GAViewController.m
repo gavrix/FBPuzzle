@@ -91,8 +91,8 @@
 -(FBPuzzleGameViewTile *)gameView:(FBPuzzleGameView *)gameVIew 
                  tileForIndexPath:(NSIndexPath *)indexPath
 {
-    if([indexPath isEqual:
-        [(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame].skippedTileIndexPath])
+    FBPuzzleGame* game = [(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame];
+    if([indexPath isEqual: game.skippedTileIndexPath])
         return nil;
     
     FBPuzzleGameViewTile* tile = [[FBPuzzleGameViewTile alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
@@ -101,9 +101,9 @@
     label.font = [UIFont boldSystemFontOfSize:56.0];
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
+    NSIndexPath* realIndexPath = [game realIndexOfTileAtIndexPath:indexPath];
     label.text = [NSString stringWithFormat:@"%d", 
-                  indexPath.row*[(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame].dimension +
-                  indexPath.column];
+                  realIndexPath.row*game.dimension + realIndexPath.column];
     [tile addSubview:label];
     [label release];
     return [tile autorelease];

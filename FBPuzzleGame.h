@@ -30,6 +30,8 @@ typedef enum
     
     NSMutableArray* _tiles;
     NSIndexPath* _skippedIndexPath;
+    
+    NSMutableSet* _wrongTiles;
 }
 
 -(void) initializeGameWithDimension:(NSUInteger) dimension 
@@ -41,6 +43,7 @@ typedef enum
 -(void) moveTileAtIndexPath:(NSIndexPath*)indexPath 
                 inDirection:(EFBPuzzleGameMoveDirection) direction;
 
+-(NSIndexPath*) realIndexOfTileAtIndexPath:(NSIndexPath*)indexPath;
 
 @property (nonatomic, readonly) NSIndexPath* skippedTileIndexPath;
 @property (nonatomic, readonly) NSUInteger dimension;
