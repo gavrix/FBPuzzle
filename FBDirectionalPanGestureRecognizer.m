@@ -26,7 +26,7 @@ int const static kDirectionPanThreshold = 5;
     _moveY += prevPoint.y - nowPoint.y;
     if (!_drag) 
     {
-        if (abs(_moveX) > kDirectionPanThreshold) 
+        if (ABS(_moveX)>ABS(_moveY) && ABS(_moveX) > kDirectionPanThreshold) 
         {
             if (_direction == EFBPanGestureDirectionVertical) 
             {
@@ -37,7 +37,7 @@ int const static kDirectionPanThreshold = 5;
                 _drag = YES;
             }
         }
-        else if (abs(_moveY) > kDirectionPanThreshold) 
+        else if (ABS(_moveY)>ABS(_moveX) && ABS(_moveY) > kDirectionPanThreshold) 
         {
             if (_direction == EFBPanGestureDirectionHorizontal) 
             {

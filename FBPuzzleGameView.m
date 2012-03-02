@@ -247,7 +247,7 @@ static char shadowKey;
                     
                 }
             }
-            else if(gc.state == UIGestureRecognizerStateEnded || gc.state == UIGestureRecognizerStateChanged)
+            else if(gc.state == UIGestureRecognizerStateEnded || gc.state == UIGestureRecognizerStateCancelled || gc.state == UIGestureRecognizerStateFailed)
             {
                 _drag = NO;
                 
@@ -355,7 +355,7 @@ static char shadowKey;
                     
                 }
             }
-            else if(gc.state == UIGestureRecognizerStateEnded || gc.state == UIGestureRecognizerStateChanged)
+            else if(gc.state == UIGestureRecognizerStateEnded || gc.state == UIGestureRecognizerStateCancelled || gc.state == UIGestureRecognizerStateFailed)
             {
                 _drag = NO;
                 CGFloat translation = [gc translationInView:tile].x;
