@@ -46,6 +46,8 @@ NSString* kGameFinishedNotification = @"kGameFinishedNotification";
 -(void)dealloc
 {
     [_tiles release];
+    [_skippedIndexPath release];
+    [_wrongTiles release];
     [super dealloc];
 }
 
