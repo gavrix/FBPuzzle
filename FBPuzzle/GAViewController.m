@@ -96,6 +96,16 @@
         return nil;
     
     FBPuzzleGameViewTile* tile = [[FBPuzzleGameViewTile alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    UILabel* label = [[UILabel alloc] initWithFrame:tile.bounds];
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    label.font = [UIFont boldSystemFontOfSize:56.0];
+    label.textAlignment = UITextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    label.text = [NSString stringWithFormat:@"%d", 
+                  indexPath.row*[(GAAppDelegate*)[UIApplication sharedApplication].delegate puzzleGame].dimension +
+                  indexPath.column];
+    [tile addSubview:label];
+    [label release];
     return [tile autorelease];
 }
 

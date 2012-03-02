@@ -39,7 +39,7 @@ didMoveTileAtIndexPath:(NSIndexPath*) indexPath
     
     UIView* _shadowsView;
     
-    
+    BOOL _drag;
     
     
 }
