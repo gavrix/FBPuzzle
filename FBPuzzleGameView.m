@@ -28,11 +28,13 @@ static char shadowKey;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) commonInit
 {
-    self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    self.backgroundColor = [UIColor clearColor];
+    self.layer.borderWidth = 2;
     
     _shadowsView = [[UIView alloc] initWithFrame:self.bounds];
     _shadowsView.backgroundColor = [UIColor clearColor];
     _shadowsView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    
     [self addSubview:_shadowsView];
     
     UIPanGestureRecognizer* verticalGc = [[UIPanGestureRecognizer alloc] 

@@ -9,6 +9,7 @@
 #import "GAViewController.h"
 #import "FBPuzzleGameViewTile.h"
 #import "GAAppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface GAViewController()
 -(UIImage*) imageForTileAtIndexPath:(NSIndexPath*) indexPath
@@ -16,8 +17,8 @@
 @end
 
 @implementation GAViewController
-@synthesize puzzleGameView;
-
+@synthesize puzzleGameView, infoButton, settingsView, flipContainerView;
+@synthesize typeSlider, typeCell, levelSlider, levelCell;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - View lifecycle
@@ -35,6 +36,16 @@
                                              selector:@selector(gameFinished)
                                                  name:kGameFinishedNotification
                                                object:nil];
+    self.settingsView.layer.cornerRadius = 10.0f;
+    self.settingsView.layer.shadowOffset = CGSizeZero;
+    self.settingsView.layer.shadowRadius = 20;
+    self.settingsView.layer.shadowOpacity = 1;
+    self.settingsView.layer.shadowPath = 
+        [UIBezierPath bezierPathWithRoundedRect:self.settingsView.bounds 
+                               cornerRadius:10].CGPath;
+
+    self.typeSlider.selectedSegmentIndex = [[[NSUserDefaults standardUserDefaults] valueForKey:@"type"] intValue];
+
 
 }
 
@@ -44,6 +55,15 @@
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.puzzleGameView = nil;
+    self.infoButton = nil;
+    self.settingsView = nil;
+    self.flipContainerView = nil;
+    
+    self.typeSlider = nil;
+    self.typeCell = nil;
+    self.levelSlider = nil;
+    self.levelCell = nil;;
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +71,15 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.puzzleGameView = nil;
+    self.infoButton = nil;
+    self.settingsView = nil;
+    self.flipContainerView = nil;
+    
+    self.typeSlider = nil;
+    self.typeCell = nil;
+    self.levelSlider = nil;
+    self.levelCell = nil;;
+
     [super dealloc];
 }
 
@@ -130,12 +159,27 @@
     
     FBPuzzleGameViewTile* tile = [[FBPuzzleGameViewTile alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:[self imageForTileAtIndexPath:[game realIndexOfTileAtIndexPath:indexPath ] 
-                                                                                withDimension:game.dimension]];
-    imageView.frame = tile.bounds;
-    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [tile addSubview:imageView];
-    [imageView release];
+    NSInteger type = [[[NSUserDefaults standardUserDefaults] objectForKey:@"type"] intValue];
+    if(type == 0)
+    {
+        UIImageView* imageView = [[UIImageView alloc] initWithImage:[self imageForTileAtIndexPath:[game realIndexOfTileAtIndexPath:indexPath ] 
+                                                                                    withDimension:game.dimension]];
+        imageView.frame = tile.bounds;
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [tile addSubview:imageView];
+        [imageView release];
+    }
+    else if(type == 1)
+    {
+        UILabel* label = [[UILabel alloc] initWithFrame:tile.bounds];
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        label.font = [UIFont boldSystemFontOfSize:52];
+        label.textAlignment = UITextAlignmentCenter;
+        NSIndexPath* realdIndexPath = [game realIndexOfTileAtIndexPath:indexPath ];
+        label.text = [NSString stringWithFormat:@"%d", realdIndexPath.row * game.dimension + realdIndexPath.column ];
+        [tile addSubview:label];
+        [label release];
+    }
     return [tile autorelease];
 }
 
@@ -173,6 +217,113 @@ didMoveTileAtIndexPath:(NSIndexPath *)indexPath
     UIImage* retVal = [UIImage imageWithCGImage:crop];
     CGImageRelease(crop);
     return retVal;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - button action handlers
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(IBAction)infoButtonPressed
+{
+    [UIView beginAnimations:nil context:nil];
+    if(self.settingsView.hidden)
+    {
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft 
+                               forView:self.flipContainerView cache:YES];
+        [UIView setAnimationDuration:1];
+
+        [self.puzzleGameView setHidden:YES];
+        [self.settingsView setHidden:NO];
+        
+        [UIView commitAnimations];
+    }
+    else
+    {
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft 
+                               forView:self.flipContainerView cache:YES];
+        [UIView setAnimationDuration:1];
+
+        [self.settingsView setHidden:YES];
+        [self.puzzleGameView setHidden:NO];
+
+        [UIView commitAnimations];
+    }
+    
+
+}
+
+-(IBAction)levelChanged:(id)sender
+{
+    
+}
+
+-(IBAction)typeChanged:(id)sender
+{
+    NSInteger value = [(UISegmentedControl*)sender selectedSegmentIndex];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:value] 
+                                             forKey:@"type"];
+    [self.puzzleGameView loadGameView];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - button action handlers
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString* headerTitle = nil;
+    switch (section)
+    {
+        case 0:
+            headerTitle = @"Type";
+            break;
+        case 1:
+            headerTitle = @"Level";
+            break;
+        default:
+            break;
+    }
+    return headerTitle;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger num = 0;
+    switch (section)
+    {
+        case 0:
+            num = 1;
+            break;
+        case 1:
+            num = 1;
+            break;
+        default:
+            break;
+    }
+    return num;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView 
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell* cell = nil;
+    switch (indexPath.section)
+    {
+        case 0:
+            cell = self.typeCell;
+            break;
+        case 1:
+            cell = self.levelCell;
+            break;
+        default:
+            break;
+    }
+    return cell;
 }
 
 @end
